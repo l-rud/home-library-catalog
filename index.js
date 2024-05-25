@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
+const genresRouter = require('./routes/genres.js');
+
 const path = require('path');
 
 // We use the body-parser middleware FIRST so that
@@ -28,7 +30,7 @@ ${time.toLocaleTimeString()}: Received a ${req.method} request to ${req.url}.`
 });
 
 // Valid API Keys.
-const apiKeys = ['perscholas', 'ps-example', 'hJAsknw-L198sAJD-l3kasx'];
+const apiKeys = ['home-library-api-key'];
 
 // New middleware to check for API keys!
 // Note that if the key is not verified,
@@ -52,6 +54,10 @@ app.use('/api', function (req, res, next) {
   req.key = key;
   next();
 });
+
+// API ROUTES
+// Genres Route
+app.use('/api/genres', genresRouter);
 
 // Custom 404 (not found) middleware.
 // Since we place this last, it will only process
