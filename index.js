@@ -3,6 +3,8 @@ const app = express();
 const PORT = 3000;
 
 const genresRouter = require('./routes/genres.js');
+const booksRouter = require('./routes/books.js');
+const authorsRouter = require('./routes/authors.js');
 
 const path = require('path');
 
@@ -58,6 +60,12 @@ app.use('/api', function (req, res, next) {
 // API ROUTES
 // Genres Route
 app.use('/api/genres', genresRouter);
+
+// Books Route
+app.use('/api/books', booksRouter);
+
+// Authors Route
+app.use('/api/authors', authorsRouter);
 
 // Custom 404 (not found) middleware.
 // Since we place this last, it will only process
