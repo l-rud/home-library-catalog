@@ -5,6 +5,7 @@ const PORT = 3000;
 const genresRouter = require('./routes/genres.js');
 const booksRouter = require('./routes/books.js');
 const authorsRouter = require('./routes/authors.js');
+const error = require('./utilities/error.js');
 
 const path = require('path');
 
@@ -89,6 +90,7 @@ app.use((err, req, res, next) => {
     res.json({ error: err.message });
 });
 
+// Make the server start listening for requests (turns the server on)
 app.listen(PORT, () => {
     console.log(`Server is running on port: ${PORT}`);
 });
