@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Library Catalog</title>
+    <link rel="stylesheet" href="/public/stylesheets/genres.css">
+</head>
+
+<body>
+    <img src="/public/images/genres.jpg"/>
+    <h1>Genres</h1>
+    <div>
+        <table>
+            <%
+                for (let i = 0; i < genres.length; i++) { 
+            %>
+                <tr>
+                    <td><b><%= genres[i].name %></b></td>
+                    <td><%= genres[i].description %></td>
+                </tr>
+            <% 
+               }
+            %>
+        </table>
+    </div>
+</body>
+
+</html>

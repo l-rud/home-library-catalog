@@ -2,12 +2,17 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
+// set the view engine to ejs
+app.set('view engine', 'ejs');
+
 const genresRouter = require('./routes/genres.js');
 const booksRouter = require('./routes/books.js');
 const authorsRouter = require('./routes/authors.js');
 const error = require('./utilities/error.js');
 
+//Serve static files  (images, css) from publick folder
 const path = require('path');
+app.use('/public', express.static(path.join(__dirname, 'public')))
 
 // We use the body-parser middleware FIRST so that
 // we have access to the parsed data within our routes.
@@ -67,6 +72,24 @@ app.use('/api/books', booksRouter);
 
 // Authors Route
 app.use('/api/authors', authorsRouter);
+
+// Route to index view
+/*When a user visits the root URL (http://localhost:3000), 
+this route handler fetches the list of genres from API endpoint on the server, 
+renders an "index" view, and passes the fetched genres data to the view for display. 
+If any errors occur, it logs to the console. */
+app.get('/', function(req, res) {
+  const url = req.protocol + '://' + req.get('host');
+  fetch(url + '/api/genres?api-key=home-library-api-key')
+  .then((response) => response.json())
+  .then((data) => {
+    const genres = data.genres;
+    res.render('index', {"genres": genres});
+  })
+  .catch((error) => {
+      console.log(error)
+  });
+});
 
 // Custom 404 (not found) middleware.
 // Since we place this last, it will only process
