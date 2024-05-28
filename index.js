@@ -91,6 +91,21 @@ app.get('/', function(req, res) {
   });
 });
 
+app.get('/books', function(req, res) {
+  const genreId = req.query.genreId;
+  const url = req.protocol + '://' + req.get('host');
+  fetch(url + '/api/books?api-key=home-library-api-key')
+  .then((response) => response.json())
+  .then((data) => {
+    const books = data.books;
+    const booksByGenre = books.filter((book) => book.genreId == genreId);
+    res.render('books', {"books": booksByGenre});
+  })
+  .catch((error) => {
+      console.log(error)
+  });
+});
+
 // Custom 404 (not found) middleware.
 // Since we place this last, it will only process
 // if no other routes have already sent a response!

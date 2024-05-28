@@ -10,15 +10,15 @@
 
 <body>
     <img src="/public/images/genres.jpg"/>
-    <h1>Genres</h1>
+    <h1>Books</h1>
     <div>
         <table>
             <%
-                for (let i = 0; i < genres.length; i++) { 
+                for (let i = 0; i < books.length; i++) { 
             %>
                 <tr>
-                    <td><b><a href="/books?genreId=<%= genres[i].id %>"><%= genres[i].name %></a></b></td>
-                    <td><%= genres[i].description %></td>
+                    <td><b><%= books[i].title %></b></td>
+                    <td><%= books[i].overview %></td>
                 </tr>
             <% 
                }
