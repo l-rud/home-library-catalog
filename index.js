@@ -79,9 +79,9 @@ this route handler fetches the list of genres from API endpoint on the server,
 renders an "index" view, and passes the fetched genres data to the view for display. 
 If any errors occur, it logs to the console. */
 app.get('/', function(req, res) {
-  const url = req.headers['X-Forwarded-Proto'] + '://' + req.headers['X-Forwarded-Host'];
-  
-  console.log("url: " + url);
+  // const url = req.headers['X-Forwarded-Proto'] + '://' + req.headers['X-Forwarded-Host'];
+  // console.log("url: " + url);
+  const url = '';
    
   fetch(url + '/api/genres?api-key=home-library-api-key')
   .then((response) => response.json())
@@ -96,9 +96,10 @@ app.get('/', function(req, res) {
 
 app.get('/books', function(req, res) {
   const genreId = req.query.genreId;
-  const url = req.headers['X-Forwarded-Proto'] + '://' + req.headers['X-Forwarded-Host'];
-
-  console.log("url: " + url);
+  
+  // const url = req.headers['X-Forwarded-Proto'] + '://' + req.headers['X-Forwarded-Host'];
+  // console.log("url: " + url);
+  const url = '';
 
   fetch(url + '/api/books?api-key=home-library-api-key')
   .then((response) => response.json())
